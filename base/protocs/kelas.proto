@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = ".;packets";
+
+package packets;
+
+import "google/protobuf/any.proto";
+
+
+message KelasRequest {
+    google.protobuf.Any Data = 1;
+}
+
+message KelasRequestByID {
+    string KelasID = 1;
+}
+
+message OutputKelas {
+    int32 Status = 1;
+    google.protobuf.Any Data = 2;
+}
+
+service Kelas {
+    rpc GetKelasByIdUsecase(KelasRequestByID) returns(OutputKelas){}
+    rpc CreateKelasUsecase(KelasRequest) returns(OutputKelas){}
+}
